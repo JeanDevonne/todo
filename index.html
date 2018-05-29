@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Todo App</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Todo List</h1>
+        <todo-form @todo-created="addTodo"></todo-form>
+        <todo-list :todos="todos"></todo-list>
+    </div>
+    <script>
+        Vue.component('todo-form', {
+            template:'<form @submit.prevent="todoEvent"><input type="text" v-model="newTodo">' + '<input type="submit" value="add"></form>',
+            data: function() {
+                return {
+                    newTodo: ''
+                }
+            },
+            methods: {
+                todoEvent: function() {
+                    this.$emit('todo-created', this.newTodo);
+                    this.newTodo = '';
+                }
+            }
+        });
+        Vue.component('todo-list',{
+            template: '<ul><li v-for="todo in todos">{{todo}}</li></ul>',
+            props: ['todos']
+        });
+        new Vue({
+            el: '#app',
+            data: {
+                'todos': []
+            },
+            methods: {
+                addTodo: function (todo) {
+                    this.todos.push(todo);
+                }
+            }
+        })
+    </script>
+</body>
+</html>
