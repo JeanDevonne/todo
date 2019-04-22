@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.0/vue.js"></script>
     <title>Todo App</title>
 </head>
 <body>
@@ -15,38 +15,7 @@
         <todo-form @todo-created="addTodo"></todo-form>
         <todo-list :todos="todos"></todo-list>
     </div>
-    <script>
-        Vue.component('todo-form', {
-            template:'<form @submit.prevent="todoEvent"><input id="lbl" class="lbl" type="text" placeholder="add task ..." v-model="newTodo">' + '<input class="btn" type="submit" value="+"></form>',
-            data: function() {
-                return {
-                    newTodo: ''
-                }
-            },
-            methods: {
-                todoEvent: function() {
-                    this.$emit('todo-created', this.newTodo);
-                    this.newTodo = '';
-                }
-            }
-        });
-        Vue.component('todo-list',{
-            template: '<ul><li v-for="todo in todos">{{todo}}</li></ul>',
-            props: ['todos']
-        });
-        new Vue({
-            el: '#app',
-            data: {
-                'todos': []
-            },
-            methods: {
-                addTodo: function (todo) {
-                    this.todos.push(todo);
-                    document.getElementById('lbl').focus();
-                }
-            }
-        })
-    </script>
+    <script src="js/script.js"></script>
     <script>
         function formatDate(date) {
             let monthNames = ["January", "February", "March","April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -61,7 +30,6 @@
         }
 
         document.getElementById("date").innerHTML = formatDate(new Date());
-        console.log(formatDate(new Date()));
 
         document.getElementById('lbl').focus();
 

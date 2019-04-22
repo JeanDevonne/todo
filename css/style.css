@@ -1,8 +1,27 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
+@font-face {
+    font-family: 'icomoon';
+    src: url('../fonts/icomoon.eot');
+    src: url('../fonts/icomoon.eot') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+.icon-remove::before {
+    font-family: 'icomoon';
+    content: "\e900";
+    color: #5C39B4;
+    font-size: 20px;
+}
 h1 {
     margin: 0;
     font-size: 1.6em;
     padding: 20px 0px 20px;
+}
+a {
+    text-decoration: none;
 }
 textarea:focus, input:focus{
     outline: none;
